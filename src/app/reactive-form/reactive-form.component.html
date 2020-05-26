@@ -20,11 +20,19 @@
           <div>
             <small
               *ngIf="
-                !controls.userName.valid &&
+                userName.errors?.required &&
                 (controls.userName.dirty || controls.userName.touched)
               "
               class="form-text text-danger"
               >Email is a required field!</small
+            >
+            <small
+              *ngIf="
+                userName.errors?.email &&
+                (controls.userName.dirty || controls.userName.touched)
+              "
+              class="form-text text-danger"
+              >Email is not Valid Like Ex: john@example.com</small
             >
           </div>
         </div>
@@ -39,8 +47,13 @@
           />
           <small
             class="form-text text-danger"
-            *ngIf="!controls.password.valid && controls.password.touched"
+            *ngIf="password.errors?.required && controls.password.touched"
             >This Field is Required</small
+          >
+          <small
+            class="form-text text-danger"
+            *ngIf="password.errors?.minlength && controls.password.touched"
+            >Password Length Must be 8 characters</small
           >
         </div>
 

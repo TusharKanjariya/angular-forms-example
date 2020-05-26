@@ -26,7 +26,7 @@
               >Email is a required field!</small
             >
             <small class="form-text text-danger" *ngIf="mail.errors?.pattern"
-              >This is not a valid Email!!!</small
+              >This is not a valid Emai! Like Ex: jhon@example.com</small
             >
           </div>
         </div>
@@ -42,11 +42,14 @@
             minlength="8"
             [ngClass]="pass.valid ? 'is-valid' : ''"
           />
-          <small
-            *ngIf="!pass.valid && pass.touched"
-            class="form-text text-danger"
-            >This Field is Required</small
-          >
+          <div *ngIf="pass.touched">
+            <small *ngIf="pass.errors?.required" class="form-text text-danger"
+              >This Field is Required</small
+            >
+            <small *ngIf="pass.errors?.minlength" class="form-text text-danger"
+              >Password Length must be 8 characters.</small
+            >
+          </div>
         </div>
 
         <button
