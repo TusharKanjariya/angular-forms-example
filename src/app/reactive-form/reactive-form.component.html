@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Reactive Form</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 bg-light p-3">
+      <form [formGroup]="loginForm">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="userName"
+            formControlName="userName"
+            [ngClass]="controls.userName.valid ? 'is-valid' : ''"
+          />
+          <div>
+            <small
+              *ngIf="
+                !controls.userName.valid &&
+                (controls.userName.dirty || controls.userName.touched)
+              "
+              class="form-text text-danger"
+              >Email is a required field!</small
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            formControlName="password"
+            [ngClass]="controls.password.valid ? 'is-valid' : ''"
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="!controls.password.valid && controls.password.touched"
+            >This Field is Required</small
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!loginForm.valid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>

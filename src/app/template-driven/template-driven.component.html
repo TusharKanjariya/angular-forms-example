@@ -1,0 +1,63 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <h3>Template Driven Form</h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 bg-light p-3">
+      <form #newUserForm="ngForm" (ngSubmit)="onSubmit(newUserForm)">
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            name="userName"
+            aria-describedby="emailHelp"
+            [(ngModel)]="userName"
+            #mail="ngModel"
+            pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+            required
+            [ngClass]="mail.valid ? 'is-valid' : ''"
+          />
+          <div *ngIf="mail.touched">
+            <small class="form-text text-danger" *ngIf="mail.errors?.required"
+              >Email is a required field!</small
+            >
+            <small class="form-text text-danger" *ngIf="mail.errors?.pattern"
+              >This is not a valid Email!!!</small
+            >
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            [(ngModel)]="password"
+            required
+            #pass="ngModel"
+            name="password"
+            minlength="8"
+            [ngClass]="pass.valid ? 'is-valid' : ''"
+          />
+          <small
+            *ngIf="!pass.valid && pass.touched"
+            class="form-text text-danger"
+            >This Field is Required</small
+          >
+        </div>
+
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="!newUserForm.form.valid"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
+    <div class="col-md-4"></div>
+  </div>
+</div>
