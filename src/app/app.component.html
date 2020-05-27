@@ -23,6 +23,18 @@
       >Reactive Forms</a
     >
   </li>
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="pills-other-tab"
+      data-toggle="pill"
+      href="#pills-other"
+      role="tab"
+      aria-controls="pills-other"
+      aria-selected="false"
+      >Table Edit</a
+    >
+  </li>
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div
@@ -40,6 +52,14 @@
     aria-labelledby="pills-profile-tab"
   >
     <app-reactive-form></app-reactive-form>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="pills-other"
+    role="tabpanel"
+    aria-labelledby="pills-other-tab"
+  >
+    <app-table-row-edit> </app-table-row-edit>
   </div>
 </div>
 

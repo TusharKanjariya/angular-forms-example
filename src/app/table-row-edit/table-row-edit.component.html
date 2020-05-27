@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row">
+    <table class="table table-striped">
+      <tr>
+        <th>Name</th>
+        <th>Passowrd</th>
+        <th>Post</th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let user of userData">
+        <td>{{ user.name }}</td>
+        <td>{{ user.password }}</td>
+        <td>{{ user.post }}</td>
+        <td>
+          <button
+            class="btn btn-primary btn-sm"
+            data-toggle="modal"
+            data-target="#exampleModal"
+            (click)="fillData(user.id)"
+          >
+            Edit
+          </button>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Modal Component -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Update Details</h5>
+        <input type="hidden" name="id" [(ngModel)]="id" />
+        <button
+          type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #updateForm="ngForm">
+          <div class="form-group">
+            <label class="col-form-label">Name</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="name"
+              name="name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Password</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="password"
+              name="password"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="col-form-label">Post</label>
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="post"
+              name="post"
+              required
+            />
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+          Cancel
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="updateDetails(id)"
+          data-dismiss="modal"
+          [disabled]="!updateForm.form.valid"
+        >
+          Update Details
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
